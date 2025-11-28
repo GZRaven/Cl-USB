@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Système de Sécurité</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000;
+            color: #ff3333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1) 0.5px, transparent 0.5px),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.1) 0.5px, transparent 0.5px),
+                radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.1) 0.5px, transparent 0.5px);
+            background-size: 200px 200px;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
+        }
+
+        .container {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            width: 350px;
+            text-align: center;
+            border: 1px solid #ff3333;
+        }
+
+        h1 {
+            color: #ff3333;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ff3333;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #222;
+            color: #ff3333;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            background-color: #ff3333;
+            color: white;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        .binary-effect {
+            font-size: 10px;
+            color: rgba(255, 0, 0, 0.3);
+            margin: 10px 0;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Section "Accès autorisé" */
+        .acces-autorise {
+            display: none;
+            background-color: #111;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            width: 400px;
+            text-align: center;
+            border: 1px solid #00ff00;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .acces-autorise h1 {
+            color: #00ff00;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+
+        .acces-autorise .binary-effect {
+            font-size: 12px;
+            color: rgba(0, 255, 0, 0.5);
+            margin: 20px 0;
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ACCÈS RESTREINT</h1>
+        <div class="binary-effect">
+            01010100 01100001 01110000 01100101 01111000 00100000 01100110 01101111 01110100 01110010 01100101 00100000 01100011 01101111 01100100 01100101
+        </div>
+        <p>Veuillez entrer les deux codes de sécurité :</p>
+        <input type="password" id="code1" placeholder="Code 1" />
+        <input type="password" id="code2" placeholder="Code 2" />
+        <button onclick="verifierCodes()">DÉVERROUILLER</button>
+    </div>
+
+    <!-- Section cachée pour "Accès autorisé" -->
+    <div class="acces-autorise" id="accesAutorise">
+        <h1>ACCÈS AUTORISÉ</h1>
+        <div class="binary-effect">
+            01000001 01100011 01100011 01100100 01110010 01100101 01110011 00100000 01100001 01110101 01110100 01101111 01110010 01101001 01110011 01100100
+        </div>
+        <p>Bienvenue dans le système.</p>
+    </div>
+
+    <script>
+        function verifierCodes() {
+            const code1 = document.getElementById("code1").value;
+            const code2 = document.getElementById("code2").value;
+            const container = document.querySelector(".container");
+            const accesAutorise = document.getElementById("accesAutorise");
+
+            if (code1 === "75234" && code2 === "24502") {
+                container.style.display = "none";
+                accesAutorise.style.display = "block";
+            } else {
+                alert("⚠️ Codes incorrects. Accès refusé.");
+            }
+        }
+    </script>
+</body>
+</html>
